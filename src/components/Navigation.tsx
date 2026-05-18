@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function Navigation() {
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `text-sm font-medium tracking-widest uppercase transition-colors duration-200 ${
+    `text-sm font-medium transition-colors duration-200 ${
       isActive
         ? 'text-gold-400'
         : 'text-zinc-400 hover:text-zinc-100'
@@ -18,8 +18,8 @@ export default function Navigation() {
             <span className="font-display text-xl font-semibold tracking-wide text-zinc-100 group-hover:text-gold-400 transition-colors">
               Glint Archive
             </span>
-            <span className="text-[10px] tracking-[0.3em] text-zinc-500 uppercase mt-0.5">
-              Reptile Showroom
+            <span className="text-[10px] tracking-[0.25em] text-zinc-500 mt-0.5">
+              파충류 분양 쇼룸
             </span>
           </div>
         </NavLink>
@@ -27,10 +27,10 @@ export default function Navigation() {
         {/* Nav Links */}
         <nav className="flex items-center gap-8">
           <NavLink to="/" end className={linkClass}>
-            Archive
+            아카이브
           </NavLink>
           <NavLink to="/worldcup" className={linkClass}>
-            Worldcup
+            이상형 월드컵
           </NavLink>
         </nav>
       </div>

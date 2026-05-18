@@ -26,14 +26,6 @@ function getRoundLabel(roundSize: number): string {
   return '결승';
 }
 
-function getRoundLabelEn(roundSize: number): string {
-  const m = roundSize / 2;
-  if (m >= 8) return 'Round of 16';
-  if (m >= 4) return 'Quarterfinals';
-  if (m >= 2) return 'Semifinals';
-  return 'Final';
-}
-
 // ─── CandidateCard ────────────────────────────────────────────────────────────
 function CandidateCard({ morph, onPick }: { morph: MorphRow; onPick: () => void }) {
   const [imgErr, setImgErr] = useState(false);
@@ -46,7 +38,7 @@ function CandidateCard({ morph, onPick }: { morph: MorphRow; onPick: () => void 
         {imgErr ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-surface-700">
             <span className="text-5xl mb-2">🦎</span>
-            <span className="text-xs text-zinc-500">{morph.name_en}</span>
+            <span className="text-xs text-zinc-500">{morph.name_ko}</span>
           </div>
         ) : (
           <img
@@ -58,12 +50,12 @@ function CandidateCard({ morph, onPick }: { morph: MorphRow; onPick: () => void 
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-surface-950/80 via-transparent to-transparent" />
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          <span className="rounded-full bg-gold-400 px-6 py-2 text-sm font-bold text-surface-950 tracking-wider shadow-lg">선택</span>
+          <span className="rounded-full bg-gold-400 px-6 py-2 text-sm font-bold text-surface-950 shadow-lg">선택</span>
         </div>
       </div>
       <div className="p-4 flex flex-col gap-1">
         <p className="font-display text-lg font-semibold text-zinc-100 leading-snug">{morph.name_ko}</p>
-        <p className="text-xs tracking-widest text-zinc-500 uppercase">{morph.name_en}</p>
+        <p className="text-xs text-zinc-500">{morph.name_en}</p>
         <p className="mt-1 text-gold-400 text-sm font-medium">{morph.price.toLocaleString('ko-KR')}원</p>
         <p className="mt-1 text-xs text-zinc-500 leading-relaxed line-clamp-2">{morph.description}</p>
       </div>
@@ -129,20 +121,20 @@ export default function Worldcup() {
       <main className="min-h-screen bg-surface-950 pt-16 flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-2 border-gold-400 border-t-transparent mb-4" />
-          <p className="text-sm text-zinc-500 tracking-widest uppercase">Loading</p>
+          <p className="text-sm text-zinc-500 tracking-wide">불러오는 중...</p>
         </div>
       </main>
     );
   }
 
-  // ── Species select ──────────────────────────────────────────────────────────
+  // ── 종 선택 ──────────────────────────────────────────────────────────────────
   if (phase === 'select') return (
     <main className="min-h-screen bg-surface-950 pt-16">
       <div className="mx-auto max-w-4xl px-6 py-16">
         <div className="text-center mb-12">
-          <p className="text-[11px] tracking-[0.4em] text-gold-400 uppercase mb-3">Ideal Type Worldcup</p>
-          <h1 className="font-display text-4xl font-bold text-zinc-100 mb-3">이상형 월드컵</h1>
-          <p className="text-sm text-zinc-500">어떤 종의 월드컵을 진행하시겠습니까?</p>
+          <p className="text-[11px] tracking-[0.3em] text-gold-400 mb-3">이상형 월드컵</p>
+          <h1 className="font-display text-4xl font-bold text-zinc-100 mb-3">어떤 종이 나의 이상형?</h1>
+          <p className="text-sm text-zinc-500">종을 선택하고 토너먼트를 시작하세요</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {species.map((sp) => (
@@ -150,12 +142,12 @@ export default function Worldcup() {
               className="group flex flex-col gap-3 rounded-2xl border border-surface-600 bg-surface-800 p-7 text-left transition-all duration-300 hover:border-gold-500/50 hover:bg-surface-700 hover:shadow-[0_0_40px_-10px_rgba(200,169,110,0.2)]">
               <div className="flex items-center justify-between">
                 <span className="font-display text-xl font-semibold text-zinc-100 group-hover:text-gold-400 transition-colors">{sp.name_ko}</span>
-                <span className="rounded-full bg-surface-600 px-3 py-1 text-[10px] tracking-widest text-zinc-500 uppercase">{sp.morphs.length}모프</span>
+                <span className="rounded-full bg-surface-600 px-3 py-1 text-[10px] text-zinc-500">{sp.morphs.length}개 모프</span>
               </div>
-              <p className="text-xs tracking-widest text-zinc-500 uppercase">{sp.name_en}</p>
+              <p className="text-xs text-zinc-500">{sp.name_en}</p>
               <p className="text-xs text-zinc-500 leading-relaxed">{sp.tagline}</p>
               <span className="text-[10px] text-gold-400/70 font-medium mt-2">
-                {toBracketPool(sp.morphs).length}강 토너먼트 →
+                {toBracketPool(sp.morphs).length}강 토너먼트 시작 →
               </span>
             </button>
           ))}
@@ -164,7 +156,7 @@ export default function Worldcup() {
     </main>
   );
 
-  // ── Match ───────────────────────────────────────────────────────────────────
+  // ── 대결 ─────────────────────────────────────────────────────────────────────
   if (phase === 'match' && tournament && selectedSpecies) {
     const { currentRound, matchIndex, pendingWinners } = tournament;
     const left = currentRound[matchIndex * 2];
@@ -176,13 +168,11 @@ export default function Worldcup() {
         <div className="mx-auto max-w-5xl px-4 py-10">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-3 rounded-full border border-gold-500/30 bg-surface-800 px-5 py-2 mb-4">
-              <span className="text-gold-400 font-bold text-sm tracking-wider">{getRoundLabel(currentRound.length)}</span>
-              <span className="text-zinc-600 text-xs">|</span>
-              <span className="text-zinc-500 text-xs tracking-widest uppercase">{getRoundLabelEn(currentRound.length)}</span>
+              <span className="text-gold-400 font-bold text-sm">{getRoundLabel(currentRound.length)}</span>
+              <span className="text-zinc-600 text-xs">·</span>
+              <span className="text-zinc-500 text-xs">{matchIndex + 1} / {totalMatches} 경기</span>
             </div>
-            <p className="text-xs text-zinc-600 tracking-widest uppercase">
-              {selectedSpecies.name_ko} · {matchIndex + 1} / {totalMatches} 경기
-            </p>
+            <p className="text-xs text-zinc-600">{selectedSpecies.name_ko} 이상형 월드컵</p>
           </div>
           <div className="max-w-md mx-auto mb-10">
             <div className="h-0.5 bg-surface-600 rounded-full overflow-hidden">
@@ -198,7 +188,7 @@ export default function Worldcup() {
             <CandidateCard morph={right} onPick={() => pickWinner(right)} />
           </div>
           <div className="flex justify-center mt-10">
-            <button onClick={reset} className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors tracking-widest uppercase">
+            <button onClick={reset} className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors">
               ← 종 다시 선택
             </button>
           </div>
@@ -207,15 +197,15 @@ export default function Worldcup() {
     );
   }
 
-  // ── Champion ────────────────────────────────────────────────────────────────
+  // ── 챔피언 ───────────────────────────────────────────────────────────────────
   if (phase === 'champion' && champion && selectedSpecies) return (
     <main className="min-h-screen bg-surface-950 pt-16">
       <div className="mx-auto max-w-2xl px-6 py-16 text-center">
         <div className="mb-4 text-5xl select-none">🏆</div>
-        <p className="text-[11px] tracking-[0.4em] text-gold-400 uppercase mb-2">Champion</p>
+        <p className="text-[11px] tracking-[0.3em] text-gold-400 mb-2">나의 이상형</p>
         <h2 className="font-display text-3xl font-bold text-zinc-100 mb-1">{champion.name_ko}</h2>
-        <p className="text-sm tracking-widest text-zinc-500 uppercase mb-6">
-          {champion.name_en} — {selectedSpecies.name_ko}
+        <p className="text-sm text-zinc-500 mb-6">
+          {champion.name_en} · {selectedSpecies.name_ko}
         </p>
         <div className="relative mx-auto mb-8 aspect-[4/3] max-w-md overflow-hidden rounded-3xl border-2 border-gold-400/50 shadow-[0_0_80px_-15px_rgba(200,169,110,0.5)]">
           {champImgErr ? (
@@ -230,29 +220,29 @@ export default function Worldcup() {
         <div className="flex justify-center gap-6 mb-6">
           <div className="text-center">
             <p className="text-gold-400 font-semibold text-lg">{champion.price.toLocaleString('ko-KR')}원</p>
-            <p className="text-[10px] tracking-widest text-zinc-600 uppercase">분양가</p>
+            <p className="text-[10px] tracking-wide text-zinc-600">분양가</p>
           </div>
           <div className="w-px bg-surface-600" />
           <div className="text-center">
             <p className="text-zinc-300 font-semibold text-lg">
               {champion.status === 'available' ? '분양 가능' : champion.status === 'reserved' ? '예약 중' : '분양 완료'}
             </p>
-            <p className="text-[10px] tracking-widest text-zinc-600 uppercase">상태</p>
+            <p className="text-[10px] tracking-wide text-zinc-600">상태</p>
           </div>
         </div>
         <div className="flex flex-wrap justify-center gap-2 mb-6">
           {champion.tags.map((tag) => (
-            <span key={tag} className="rounded-sm bg-gold-400/10 border border-gold-400/20 px-3 py-1 text-[10px] font-semibold tracking-widest text-gold-400 uppercase">{tag}</span>
+            <span key={tag} className="rounded-sm bg-gold-400/10 border border-gold-400/20 px-3 py-1 text-[10px] font-semibold text-gold-400">{tag}</span>
           ))}
         </div>
         <p className="text-sm text-zinc-400 leading-relaxed max-w-lg mx-auto mb-10">{champion.description}</p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button onClick={() => startTournament(selectedSpecies)}
-            className="rounded-full bg-gold-400 px-8 py-3 text-sm font-bold text-surface-950 tracking-wider hover:bg-gold-300 transition-colors">
+            className="rounded-full bg-gold-400 px-8 py-3 text-sm font-bold text-surface-950 hover:bg-gold-300 transition-colors">
             다시 하기
           </button>
           <button onClick={reset}
-            className="rounded-full border border-surface-500 px-8 py-3 text-sm font-medium text-zinc-400 tracking-wider hover:border-zinc-400 hover:text-zinc-200 transition-colors">
+            className="rounded-full border border-surface-500 px-8 py-3 text-sm font-medium text-zinc-400 hover:border-zinc-400 hover:text-zinc-200 transition-colors">
             종 다시 선택
           </button>
         </div>

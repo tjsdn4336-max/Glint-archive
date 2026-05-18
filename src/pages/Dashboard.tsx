@@ -37,7 +37,7 @@ export default function Dashboard() {
       <main className="min-h-screen bg-surface-950 pt-16 flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-2 border-gold-400 border-t-transparent mb-4" />
-          <p className="text-sm text-zinc-500 tracking-widest uppercase">Loading Archive</p>
+          <p className="text-sm text-zinc-500 tracking-wide">불러오는 중...</p>
         </div>
       </main>
     );
@@ -48,7 +48,7 @@ export default function Dashboard() {
     return (
       <main className="min-h-screen bg-surface-950 pt-16 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-sm text-red-400 mb-2">데이터 로드 중 오류가 발생했습니다</p>
+          <p className="text-sm text-red-400 mb-2">데이터를 불러오지 못했습니다</p>
           <p className="text-xs text-zinc-600">{error}</p>
         </div>
       </main>
@@ -60,7 +60,7 @@ export default function Dashboard() {
       {/* ── Hero ────────────────────────────────────────────────────────────── */}
       <section className="border-b border-surface-700 bg-surface-900 px-6 py-10">
         <div className="mx-auto max-w-7xl">
-          <p className="text-[11px] tracking-[0.4em] text-gold-400 uppercase mb-2">Reptile Archive</p>
+          <p className="text-[11px] tracking-[0.3em] text-gold-400 mb-2">파충류 아카이브</p>
           <h1 className="font-display text-4xl font-bold text-zinc-100">Glint Archive</h1>
           <p className="mt-2 text-sm text-zinc-500 max-w-lg">
             엄선된 파충류 모프 데이터베이스 & 프리미엄 분양 쇼룸
@@ -83,7 +83,7 @@ export default function Dashboard() {
                 }`}
               >
                 <span className="block text-base">{sp.name_ko}</span>
-                <span className="block text-[10px] tracking-widest text-zinc-600 mt-0.5 uppercase">
+                <span className="block text-[10px] tracking-wide text-zinc-600 mt-0.5">
                   {sp.name_en}
                 </span>
               </button>
@@ -98,28 +98,28 @@ export default function Dashboard() {
           <div className="mx-auto max-w-7xl">
             <p className="text-xs text-zinc-500 mb-4">{currentSpecies.tagline}</p>
             <div className="flex flex-wrap gap-2 items-center">
-              <span className="text-[10px] tracking-widest text-zinc-600 uppercase mr-1">모프 필터</span>
+              <span className="text-[10px] tracking-wide text-zinc-600 mr-1">모프 필터</span>
               <button
                 onClick={() => setActiveMorphIds(new Set())}
-                className={`rounded-full px-3.5 py-1.5 text-[11px] font-semibold tracking-wider transition-all duration-150 ${
+                className={`rounded-full px-3.5 py-1.5 text-[11px] font-semibold transition-all duration-150 ${
                   activeMorphIds.size === 0
                     ? 'bg-gold-400 text-surface-950'
                     : 'bg-surface-600 text-zinc-400 hover:bg-surface-500 hover:text-zinc-200'
                 }`}
               >
-                ALL
+                전체
               </button>
               {currentSpecies.morphs.map((m) => (
                 <button
                   key={m.id}
                   onClick={() => toggleMorph(m.id)}
-                  className={`rounded-full px-3.5 py-1.5 text-[11px] font-semibold tracking-wider transition-all duration-150 ${
+                  className={`rounded-full px-3.5 py-1.5 text-[11px] font-semibold transition-all duration-150 ${
                     activeMorphIds.has(m.id)
                       ? 'bg-gold-400 text-surface-950'
                       : 'bg-surface-600 text-zinc-400 hover:bg-surface-500 hover:text-zinc-200'
                   }`}
                 >
-                  {m.name_en}
+                  {m.name_ko}
                 </button>
               ))}
             </div>
@@ -130,8 +130,8 @@ export default function Dashboard() {
       {/* ── Card grid ───────────────────────────────────────────────────────── */}
       <section className="px-6 py-10">
         <div className="mx-auto max-w-7xl">
-          <p className="text-xs text-zinc-600 mb-6 tracking-widest uppercase">
-            {visibleMorphs.length}개 모프 표시 중{currentSpecies ? ` — ${currentSpecies.name_ko}` : ''}
+          <p className="text-xs text-zinc-600 mb-6 tracking-wide">
+            {currentSpecies ? `${currentSpecies.name_ko} — ` : ''}총 {visibleMorphs.length}종 표시 중
           </p>
           {visibleMorphs.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-24 text-zinc-600">

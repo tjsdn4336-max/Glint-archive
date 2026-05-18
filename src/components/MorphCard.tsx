@@ -48,7 +48,7 @@ export default function MorphCard({ morph }: Props) {
         {/* Sold overlay */}
         {morph.status === 'sold' && (
           <div className="absolute inset-0 bg-surface-950/60 flex items-center justify-center">
-            <span className="text-sm font-semibold tracking-[0.25em] text-zinc-400 uppercase">Sold Out</span>
+            <span className="text-sm font-semibold tracking-[0.15em] text-zinc-400">분양 완료</span>
           </div>
         )}
       </div>
