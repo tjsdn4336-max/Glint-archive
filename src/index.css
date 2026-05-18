@@ -41,7 +41,172 @@
   }
 }
 
+/* ── Animation keyframes ──────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px);    }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg);    }
+  33%       { transform: translateY(-8px) rotate(0.5deg); }
+  66%       { transform: translateY(-4px) rotate(-0.3deg); }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
+}
+
+@keyframes goldPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(200, 169, 110, 0);
+  }
+  50% {
+    box-shadow: 0 0 30px 8px rgba(200, 169, 110, 0.18);
+  }
+}
+
+@keyframes revealWidth {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes orb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -20px) scale(1.05); }
+  66%       { transform: translate(-20px, 15px) scale(0.97); }
+}
+
+/* ── Utility animation classes ────────────────────────────────────────────── */
 @layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease both;
+  }
+  .animate-fade-down {
+    animation: fadeDown 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-slide-left {
+    animation: slideLeft 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-slide-right {
+    animation: slideRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-scale-in {
+    animation: scaleIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+  .animate-float-slow {
+    animation: floatSlow 6s ease-in-out infinite;
+  }
+  .animate-gold-pulse {
+    animation: goldPulse 3s ease-in-out infinite;
+  }
+  .animate-orb {
+    animation: orb 12s ease-in-out infinite;
+  }
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+
+  /* Stagger delay helpers */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+  .delay-700 { animation-delay: 700ms; }
+  .delay-800 { animation-delay: 800ms; }
+  .delay-900 { animation-delay: 900ms; }
+  .delay-1000 { animation-delay: 1000ms; }
+
+  /* Shimmer text */
+  .text-shimmer {
+    background: linear-gradient(
+      90deg,
+      #c8a96e 0%,
+      #f0d98c 40%,
+      #c8a96e 60%,
+      #9a7a4a 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
