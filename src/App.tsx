@@ -1,9 +1,8 @@
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navigation from './components/Navigation';
-import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
-import Worldcup from './pages/Worldcup';
+import MyPage from './pages/MyPage';
 import MorphDetail from './pages/MorphDetail';
 
 // Page transition wrapper
@@ -32,11 +31,13 @@ function AnimatedRoutes() {
         transition={pageTransition}
       >
         <Routes location={location}>
-          <Route path="/"          element={<Landing />} />
-          <Route path="/archive"   element={<Dashboard />} />
-          <Route path="/worldcup"  element={<Worldcup />} />
+          <Route path="/"          element={<Dashboard />} />
+          <Route path="/mypage"    element={<MyPage />} />
           <Route path="/morph/:id" element={<MorphDetail />} />
-          {/* Redirect old root to new landing */}
+          {/* Legacy redirects */}
+          <Route path="/archive"   element={<Navigate to="/" replace />} />
+          <Route path="/worldcup"  element={<Navigate to="/" replace />} />
+          <Route path="*"          element={<Navigate to="/" replace />} />
         </Routes>
       </motion.div>
     </AnimatePresence>

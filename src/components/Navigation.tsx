@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import GlintLogo from './GlintLogo';
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -29,30 +30,21 @@ export default function Navigation() {
     >
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <NavLink to="/" className="flex items-center gap-3 group">
-          <motion.span
-            className="text-2xl select-none"
-            whileHover={{ rotate: [0, -10, 10, 0], transition: { duration: 0.4 } }}
-          >
-            🦎
-          </motion.span>
-          <div className="flex flex-col leading-none">
-            <span className="font-display text-xl font-semibold tracking-wide text-zinc-100 group-hover:text-gold-400 transition-colors duration-200">
-              Glint Archive
-            </span>
-            <span className="text-[10px] tracking-[0.25em] text-zinc-500 mt-0.5">
-              파충류 분양 쇼룸
-            </span>
-          </div>
+        <NavLink to="/" className="flex items-center group">
+          <GlintLogo
+            size={38}
+            showText={true}
+            className="text-zinc-100 group-hover:text-gold-400 transition-colors duration-200"
+          />
         </NavLink>
 
         {/* Nav Links */}
         <nav className="flex items-center gap-8">
-          <NavLink to="/archive" className={linkClass}>
-            아카이브
+          <NavLink to="/" end className={linkClass}>
+            도감
           </NavLink>
-          <NavLink to="/worldcup" className={linkClass}>
-            이상형 월드컵
+          <NavLink to="/mypage" className={linkClass}>
+            마이페이지
           </NavLink>
         </nav>
       </div>
