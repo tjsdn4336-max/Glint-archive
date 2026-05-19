@@ -2,18 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useSpecies } from '../hooks/useSpecies';
-import { getMorphFilter } from '../lib/morphFilters';
-
 // ─── Floating morph card (hero decoration) ───────────────────────────────────
 function FloatingCard({
   imageUrl,
-  morphId,
   name,
   style,
   delay,
 }: {
   imageUrl: string;
-  morphId: string;
   name: string;
   style?: React.CSSProperties;
   delay: number;
@@ -41,8 +37,7 @@ function FloatingCard({
               src={imageUrl}
               alt={name}
               className="absolute inset-0 h-full w-full object-cover"
-              style={{ filter: getMorphFilter(morphId) }}
-              onError={() => setImgErr(true)}
+                            onError={() => setImgErr(true)}
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-surface-950/70 via-transparent to-transparent" />
@@ -61,14 +56,12 @@ function SpeciesCard({
   nameEn,
   morphCount,
   imageSrc,
-  morphId,
   index,
 }: {
   nameKo: string;
   nameEn: string;
   morphCount: number;
   imageSrc: string;
-  morphId: string;
   index: number;
 }) {
   const [imgErr, setImgErr] = useState(false);
@@ -93,8 +86,7 @@ function SpeciesCard({
               src={imageSrc}
               alt={nameKo}
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-107"
-              style={{ filter: getMorphFilter(morphId) }}
-              onError={() => setImgErr(true)}
+                            onError={() => setImgErr(true)}
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-surface-950/80 via-surface-950/20 to-transparent" />
@@ -192,7 +184,6 @@ export default function Landing() {
           {featuredMorphs[0] && (
             <FloatingCard
               imageUrl={featuredMorphs[0].image_url}
-              morphId={featuredMorphs[0].id}
               name={featuredMorphs[0].name_ko}
               style={{ top: '18%', right: '6%' }}
               delay={0.6}
@@ -201,7 +192,6 @@ export default function Landing() {
           {featuredMorphs[1] && (
             <FloatingCard
               imageUrl={featuredMorphs[1].image_url}
-              morphId={featuredMorphs[1].id}
               name={featuredMorphs[1].name_ko}
               style={{ top: '45%', right: '18%' }}
               delay={0.9}
@@ -210,7 +200,6 @@ export default function Landing() {
           {featuredMorphs[2] && (
             <FloatingCard
               imageUrl={featuredMorphs[2].image_url}
-              morphId={featuredMorphs[2].id}
               name={featuredMorphs[2].name_ko}
               style={{ bottom: '12%', right: '8%' }}
               delay={1.1}
@@ -219,7 +208,6 @@ export default function Landing() {
           {featuredMorphs[3] && (
             <FloatingCard
               imageUrl={featuredMorphs[3].image_url}
-              morphId={featuredMorphs[3].id}
               name={featuredMorphs[3].name_ko}
               style={{ top: '20%', left: '3%' }}
               delay={0.8}
@@ -228,7 +216,6 @@ export default function Landing() {
           {featuredMorphs[4] && (
             <FloatingCard
               imageUrl={featuredMorphs[4].image_url}
-              morphId={featuredMorphs[4].id}
               name={featuredMorphs[4].name_ko}
               style={{ bottom: '25%', left: '5%' }}
               delay={1.2}
@@ -356,7 +343,6 @@ export default function Landing() {
                   nameEn={sp.name_en}
                   morphCount={sp.morphs.length}
                   imageSrc={sp.morphs[0]?.image_url ?? ''}
-                  morphId={sp.morphs[0]?.id ?? ''}
                   index={i}
                 />
               ))}

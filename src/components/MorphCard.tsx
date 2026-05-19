@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import type { MorphRow, Status } from '../lib/supabase';
-import { getMorphFilter } from '../lib/morphFilters';
-
 interface Props {
   morph: MorphRow;
   index?: number;
@@ -44,7 +42,6 @@ export default function MorphCard({ morph, index = 0 }: Props) {
               src={morph.image_url}
               alt={`${morph.name_ko} (${morph.name_en})`}
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              style={{ filter: getMorphFilter(morph.id) }}
               onError={() => setImgError(true)}
               loading="lazy"
             />

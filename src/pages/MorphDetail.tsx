@@ -3,8 +3,6 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { supabase } from '../lib/supabase';
 import type { MorphRow, SpeciesRow, Status } from '../lib/supabase';
-import { getMorphFilter } from '../lib/morphFilters';
-
 const STATUS_CONFIG: Record<Status, { label: string; dot: string; text: string; bg: string }> = {
   available: {
     label: '분양 가능',
@@ -49,7 +47,6 @@ function RelatedCard({ morph }: { morph: MorphRow }) {
             src={morph.image_url}
             alt={morph.name_ko}
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            style={{ filter: getMorphFilter(morph.id) }}
             onError={() => setImgErr(true)}
           />
         )}
@@ -194,7 +191,6 @@ export default function MorphDetail() {
                     src={morph.image_url}
                     alt={morph.name_ko}
                     className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
-                    style={{ filter: getMorphFilter(morph.id) }}
                     onError={() => setImgErr(true)}
                     onLoad={() => setImgLoaded(true)}
                   />
