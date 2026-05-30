@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 38 420 395" fill="none">
+
+  <!-- ─── 원형 G 프레임 ───────────────────────────────────────── -->
+  <path d="M 250 48
+           C 356 48 432 126 432 232
+           C 432 338 356 414 250 414
+           C 144 414 68 338 68 232
+           C 68 126 144 48 250 48"
+        stroke="#111" stroke-width="13" fill="none" stroke-linecap="round"/>
+
+  <!-- G 개구부 + 크로스바 -->
+  <path d="M 250 414
+           C 196 414 154 382 138 338
+           C 124 296 140 252 178 232"
+        stroke="#111" stroke-width="13" fill="none" stroke-linecap="round"/>
+  <path d="M 178 232 L 316 232"
+        stroke="#111" stroke-width="13" fill="none" stroke-linecap="round"/>
+
+  <!-- ─── 목 / 몸통 ────────────────────────────────────────────── -->
+  <path d="M 178 232
+           C 192 208 208 184 226 168
+           C 242 152 262 145 280 143"
+        stroke="#111" stroke-width="11" fill="none" stroke-linecap="round"/>
+
+  <!-- ─── 머리 윤곽 ─────────────────────────────────────────────── -->
+  <path d="M 280 143
+           C 318 138 362 136 392 150
+           C 416 162 430 182 426 208
+           C 422 232 400 246 374 250
+           C 348 254 318 244 304 230"
+        stroke="#111" stroke-width="11" fill="none" stroke-linecap="round"/>
+
+  <!-- 주둥이 끝 -->
+  <path d="M 392 150 C 415 156 432 168 434 184 C 436 200 428 214 418 220"
+        stroke="#111" stroke-width="9.5" fill="none" stroke-linecap="round"/>
+
+  <!-- 아래 입선 -->
+  <path d="M 426 208 C 420 220 408 228 394 232 C 380 236 364 234 354 226"
+        stroke="#111" stroke-width="8.5" fill="none" stroke-linecap="round"/>
+
+  <!-- 콧구멍 -->
+  <circle cx="430" cy="178" r="8" fill="#111"/>
+
+  <!-- ─── 눈 ────────────────────────────────────────────────────── -->
+  <circle cx="344" cy="166" r="34" stroke="#111" stroke-width="10" fill="white"/>
+  <ellipse cx="344" cy="166" rx="12" ry="23" fill="#111"/>
+
+  <!-- ─── 이마 스파이크 ──────────────────────────────────────── -->
+  <line x1="298" y1="142" x2="288" y2="100" stroke="#111" stroke-width="8.5" stroke-linecap="round"/>
+  <line x1="314" y1="138" x2="306" y2="95"  stroke="#111" stroke-width="8.5" stroke-linecap="round"/>
+  <line x1="330" y1="136" x2="326" y2="92"  stroke="#111" stroke-width="8.5" stroke-linecap="round"/>
+  <line x1="346" y1="134" x2="345" y2="91"  stroke="#111" stroke-width="8.5" stroke-linecap="round"/>
+  <line x1="362" y1="136" x2="364" y2="94"  stroke="#111" stroke-width="8"   stroke-linecap="round"/>
+  <line x1="376" y1="140" x2="382" y2="101" stroke="#111" stroke-width="8"   stroke-linecap="round"/>
+  <line x1="388" y1="146" x2="398" y2="112" stroke="#111" stroke-width="7"   stroke-linecap="round"/>
+
+  <!-- ─── 목 주름 / 드워랩 ─────────────────────────────────── -->
+  <path d="M 304 230 C 290 240 278 254 272 270 C 266 286 270 302 282 310 C 294 318 308 314 316 302"
+        stroke="#111" stroke-width="8.5" fill="none" stroke-linecap="round"/>
+
+</svg>

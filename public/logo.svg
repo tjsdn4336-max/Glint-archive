@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600" fill="none">
+
+  <!-- ─── 원형 G 프레임 ─────────────────────────────────── -->
+  <path d="M 250 48
+           C 356 48 432 126 432 232
+           C 432 338 356 414 250 414
+           C 144 414 68 338 68 232
+           C 68 126 144 48 250 48"
+        stroke="#111" stroke-width="8" fill="none" stroke-linecap="round"/>
+
+  <!-- G자 하단 열린 부분 + 크로스바 -->
+  <path d="M 250 414
+           C 196 414 154 382 138 338
+           C 124 296 140 252 178 232"
+        stroke="#111" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M 178 232 L 316 232"
+        stroke="#111" stroke-width="8" fill="none" stroke-linecap="round"/>
+
+  <!-- ─── 목 / 몸통 ────────────────────────────────────── -->
+  <path d="M 178 232
+           C 192 208 208 184 226 168
+           C 242 152 262 145 280 143"
+        stroke="#111" stroke-width="7" fill="none" stroke-linecap="round"/>
+
+  <!-- ─── 머리 윤곽 (오른쪽 향함) ──────────────────────── -->
+  <path d="M 280 143
+           C 318 138 362 136 392 150
+           C 416 162 430 182 426 208
+           C 422 232 400 246 374 250
+           C 348 254 318 244 304 230"
+        stroke="#111" stroke-width="7" fill="none" stroke-linecap="round"/>
+
+  <!-- 주둥이 끝 -->
+  <path d="M 392 150 C 415 156 432 168 434 184 C 436 200 428 214 418 220"
+        stroke="#111" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- 아래 입선 -->
+  <path d="M 426 208 C 420 220 408 228 394 232 C 380 236 364 234 354 226"
+        stroke="#111" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+
+  <!-- 콧구멍 -->
+  <circle cx="430" cy="178" r="5.5" fill="#111"/>
+
+  <!-- ─── 눈 ──────────────────────────────────────────── -->
+  <circle cx="344" cy="166" r="34" stroke="#111" stroke-width="6.5" fill="none"/>
+  <ellipse cx="344" cy="166" rx="12" ry="23" fill="#111"/>
+
+  <!-- ─── 이마 스파이크 ──────────────────────────────── -->
+  <line x1="298" y1="142" x2="288" y2="105" stroke="#111" stroke-width="5.5" stroke-linecap="round"/>
+  <line x1="314" y1="138" x2="308" y2="100" stroke="#111" stroke-width="5.5" stroke-linecap="round"/>
+  <line x1="330" y1="136" x2="328" y2="97"  stroke="#111" stroke-width="5.5" stroke-linecap="round"/>
+  <line x1="346" y1="134" x2="347" y2="96"  stroke="#111" stroke-width="5.5" stroke-linecap="round"/>
+  <line x1="362" y1="136" x2="366" y2="99"  stroke="#111" stroke-width="5" stroke-linecap="round"/>
+  <line x1="376" y1="140" x2="384" y2="106" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+  <line x1="388" y1="146" x2="400" y2="116" stroke="#111" stroke-width="4.5" stroke-linecap="round"/>
+
+  <!-- ─── 목 주름 / 드워랩 ───────────────────────────── -->
+  <path d="M 304 230 C 290 240 278 254 272 270 C 266 286 270 302 282 310 C 294 318 308 314 316 302"
+        stroke="#111" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+
+  <!-- ─── GLINT ─────────────────────────────────────── -->
+  <text x="250" y="494"
+        text-anchor="middle"
+        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+        font-size="108"
+        font-weight="700"
+        letter-spacing="8"
+        fill="#111">GLINT</text>
+
+  <!-- ─── ARCHIVE ───────────────────────────────────── -->
+  <text x="250" y="562"
+        text-anchor="middle"
+        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+        font-size="44"
+        font-weight="400"
+        letter-spacing="20"
+        fill="#111">ARCHIVE</text>
+
+</svg>

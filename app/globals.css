@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── 디자인 토큰 ────────────────────────────────────────────────────────── */
+:root {
+  color-scheme: light;
+  --ga-bg:     #F7F7F5;
+  --ga-white:  #FFFFFF;
+  --ga-black:  #111111;
+  --ga-border: #E8E8E4;
+  --ga-muted:  #9A9A94;
+  --ga-faint:  #C8C8C4;
+  --ga-red:    #D94035;
+  --ga-blue:   #1A56DB;
+  --ga-green:  #1A7F4B;
+
+  /* Pretendard Variable + DM Serif Display (layout.tsx <link>로 로드) */
+  --font-sans:  'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+                'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+}
+
+/* ─── 기본 리셋 ──────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;          /* 가짜 bold/italic 방지 */
+}
+
+body {
+  background: var(--ga-bg);
+  color: var(--ga-black);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -0.01em;      /* Pretendard은 약간 tight하게가 자연스러움 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* ─── 세리프 (DM Serif Display — layout className으로 주입) ─────────────── */
+.font-serif, [class*="font-serif"] {
+  font-family: var(--font-serif) !important;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+/* ─── GA 뱃지 ────────────────────────────────────────────────────────────── */
+.ga-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+  line-height: 1.7;
+}
+.ga-badge-red   { background: #FEF2F0; color: var(--ga-red); }
+.ga-badge-blue  { background: #EEF3FD; color: var(--ga-blue); }
+.ga-badge-green { background: #EDF7F2; color: var(--ga-green); }
+.ga-badge-black { background: var(--ga-black); color: #FFFFFF; }
+
+/* 기존 badge (ShopMap 등 호환) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  line-height: 1.7;
+}
+.badge-gray   { background: #F4F4F5; color: #52525B; border-color: #E4E4E7; }
+.badge-blue   { background: #EFF6FF; color: #2563EB; border-color: #BFDBFE; }
+.badge-red    { background: #FEF2F2; color: #EF4444; border-color: #FECACA; }
+.badge-green  { background: #F0FDF4; color: #16A34A; border-color: #BBF7D0; }
+.badge-black  { background: #09090B; color: #FFFFFF; border-color: #09090B; }
+.badge-yellow { background: #FEFCE8; color: #92400E; border-color: #FEF08A; }
+
+/* ─── GA 인풋 ────────────────────────────────────────────────────────────── */
+.ga-input {
+  width: 100%;
+  background: var(--ga-bg);
+  border: 1px solid var(--ga-border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-family: var(--font-sans);
+  color: var(--ga-black);
+  transition: border-color 0.14s, box-shadow 0.14s;
+  outline: none;
+  line-height: 1.5;
+}
+.ga-input:focus {
+  border-color: var(--ga-black);
+  box-shadow: 0 0 0 2px rgba(17,17,17,0.08);
+}
+.ga-input::placeholder { color: var(--ga-faint); }
+
+/* 기존 input 호환 */
+.input {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1.5px solid #E4E4E7;
+  border-radius: 10px;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-family: var(--font-sans);
+  color: #111111;
+  transition: border-color 0.14s, box-shadow 0.14s;
+  outline: none;
+  line-height: 1.5;
+}
+.input:focus { border-color: #111111; box-shadow: 0 0 0 3px rgba(17,17,17,0.07); }
+.input::placeholder { color: #C8C8C4; }
+textarea.input { resize: vertical; }
+select.input   { cursor: pointer; }
+
+/* ─── Price ──────────────────────────────────────────────────────────────── */
+.price {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+/* ─── Divider ────────────────────────────────────────────────────────────── */
+.divider { height: 1px; background: var(--ga-border); }
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--ga-border); border-radius: 99px; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
+
+/* ─── 가로 스크롤 ─────────────────────────────────────────────────────────── */
+.scroll-x {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 4px;
+}
+.scroll-x::-webkit-scrollbar { display: none; }
+
+/* ─── 샵 뷰포트 ──────────────────────────────────────────────────────────── */
+.shops-viewport { height: calc(100vh - 56px - 64px); }
+@media (min-width: 768px) { .shops-viewport { height: calc(100vh - 56px); } }
+.shops-panel { max-height: 45vh; min-height: 45vh; }
+@media (min-width: 768px) { .shops-panel { max-height: none; min-height: 0; height: 100%; } }
+
+/* ─── 애니메이션 ─────────────────────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+.animate-fade-up { animation: fade-up 0.5s cubic-bezier(0.16,1,0.3,1) both; }
+
+/* ─── Skeleton ──────────────────────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--ga-border) 25%, #DDDDD9 50%, var(--ga-border) 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 6px;
+}
